@@ -52,7 +52,7 @@
         </div>
 
         <h2>All Posts</h2>
-        <div id="postsContainer"></div> <!-- Display posts here -->
+        <div id="postsContainer"></div> 
     </div>
 
     <!-- Create Post Section -->
@@ -90,48 +90,34 @@
 
 <script>
     const apiUrl = 'http://192.168.1.100:5005/api'; // Adjust the URL as necessary
-    let loggedInUserId = ''; // To hold logged-in user ID
-    let loggedInUsername = ''; // To hold logged-in username
+    let loggedInUserId = ''; // hold user ID
+    let loggedInUsername = ''; // hold username
 
-    /**
-     * Displays the specified section and hides all other sections.
-     *
-     * @param {string} section - The section to be displayed. Valid values are 'register', 'login', 'landingPage', and 'createPost'.
-     * @return {void} No return value.
-     */
+    
     function showSection(section) {
-        // Hide all sections initially
         document.getElementById('register').style.display = 'none';
         document.getElementById('login').style.display = 'none';
         document.getElementById('landingPage').style.display = 'none';
         document.getElementById('createPostSection').style.display = 'none';
 
-        // Show the selected section
         if (section === 'register') {
             document.getElementById('register').style.display = 'block';
         } else if (section === 'login') {
             document.getElementById('login').style.display = 'block';
         } else if (section === 'landingPage') {
             document.getElementById('landingPage').style.display = 'block';
-            document.getElementById('usernameDisplay').innerText = loggedInUsername; // Display the logged-in user's name
-            fetchPosts(); // Fetch posts when landing page is shown
+            document.getElementById('usernameDisplay').innerText = loggedInUsername; 
+            fetchPosts(); 
         } else if (section === 'createPost') {
             document.getElementById('createPostSection').style.display = 'block';
         }
     }
 
-    // Show Create Post Section
-    /**
-     * Displays the section for creating a new post and clears the content of the post textarea.
-     *
-     * @return {void} This function does not return a value.
-     */
     function showCreatePost() {
         document.getElementById('createPostSection').style.display = 'block';
         document.getElementById('postContent').value = ''; // Clear the textarea
     }
 
-    // Register User
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
@@ -154,7 +140,7 @@
         const data = await response.json();
         alert(data.message || "Registration successful!");
         document.getElementById('registerForm').reset(); // Clear form
-        showSection('login'); // Navigate to login section
+        showSection('login'); 
     });
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
